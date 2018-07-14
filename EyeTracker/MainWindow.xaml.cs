@@ -29,11 +29,19 @@ namespace EyeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        public String BGImage { get; set; } = @"‪wedding.jpg";
         readonly FaceTracker tracker;
         readonly EyeTrackerHelper eyeHelper;
         string[] backgrounds;
         int curBackground = 0;
+
+        Person[] people =
+        {
+            new Person { xLeft = 507, yLeft = 273, xRight = 607, yRight = 275, face = @"res\characters\anna_kendrick\anna_kendrick_face.png", white = @"res\characters\anna_kendrick\anna_kendrick_sclera.png", left = @"res\characters\anna_kendrick\anna_kendrick_left_iris.png", right = @"res\characters\anna_kendrick\anna_kendrick_right_iris.png" },
+            //new Person { xLeft = 593, yLeft = 364, xRight = 1021, yRight = 384, face = @"res\characters\chris_hemsworth\chris_hemsworth_face.png", white = @"res\characters\chris_hemsworth\chris_hemsworth_sclera.png", left = @"res\characters\chris_hemsworth\chris_hemsworth_left_iris.png", right = @"res\characters\chris_hemsworth\chris_hemsworth_right_iris.png" },
+            new Person { xLeft = 540, yLeft = 304, xRight = 690, yRight = 301, face = @"res\characters\jotaro\jotaro_kujo_face.png", white = @"res\characters\jotaro\jotaro_kujo_sclera.png", left = @"res\characters\jotaro\jotaro_kujo_left_iris.png", right = @"res\characters\jotaro\jotaro_kujo_right_iris.png" }
+
+        };
+        int curPerson = 0;
 
         public MainWindow()
         {
@@ -41,25 +49,23 @@ namespace EyeTracker
             InitializeComponent();
             tracker = new FaceTracker(HandleImage);
             eyeHelper = new EyeTrackerHelper(260, tracker.WebcamWidth, tracker.WebcamHeight);
-            eyeHelper.setVirtualEyeDepth(0.004);
+            eyeHelper.setVirtualEyeDepth(0.0033);
             RunOnUIThread(() =>
             {
                 BitmapImage background = new BitmapImage(new Uri(backgrounds[0]));
                 backgroundImage.ImageSource = background;
-                BitmapImage face = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"res\characters\anna_kendrick\anna_kendrick_face.png")));
+                BitmapImage face = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].face)));
                 faceImage.Source = new TransformedBitmap(face, new ScaleTransform(0.5, 0.5));
-                BitmapImage white = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"res\characters\anna_kendrick\anna_kendrick_sclera.png")));
+                Canvas.SetBottom(faceImage, 0);
+
+                BitmapImage white = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].white)));
                 whiteImage.Source = new TransformedBitmap(white, new ScaleTransform(0.5, 0.5));
-                BitmapImage left = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"res\characters\anna_kendrick\anna_kendrick_left_iris.png")));
+                Canvas.SetBottom(whiteImage, 0);
+
+                BitmapImage left = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].left)));
                 leftImgae.Source = new TransformedBitmap(left, new ScaleTransform(0.5, 0.5));
-                BitmapImage right = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, @"res\characters\anna_kendrick\anna_kendrick_right_iris.png")));
+                BitmapImage right = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].right)));
                 rightImage.Source = new TransformedBitmap(right, new ScaleTransform(0.5, 0.5));
-
-                Canvas.SetTop(leftImgae, 208);
-                Canvas.SetLeft(leftImgae, 537);
-
-                Canvas.SetTop(rightImage, 210);
-                Canvas.SetLeft(rightImage, 637);
             });
             tracker.Start();
         }
@@ -77,11 +83,11 @@ namespace EyeTracker
                 var point = eyeHelper.getPupilRelativePos(60, 30, tra.FaceWidth, tra.FacePoint.X, tra.FacePoint.Y);
                 //MessageBox.Show(tra.FaceWidth.ToString());
 
-                Canvas.SetTop(leftImgae, 208 + point.Y - 15);
-                Canvas.SetLeft(leftImgae, 537 + point.X - 30);
+                Canvas.SetTop(leftImgae, people[curPerson].yLeft + point.Y);
+                Canvas.SetLeft(leftImgae, people[curPerson].xLeft + point.X);
 
-                Canvas.SetTop(rightImage, 210 + point.Y - 15);
-                Canvas.SetLeft(rightImage, 637 + point.X - 30);
+                Canvas.SetTop(rightImage, people[curPerson].yRight + point.Y);
+                Canvas.SetLeft(rightImage, people[curPerson].xRight + point.X);
             });
         }
 
@@ -110,6 +116,50 @@ namespace EyeTracker
 
                         BitmapImage background = new BitmapImage(new Uri(backgrounds[curBackground]));
                         backgroundImage.ImageSource = background;
+                    }
+                    break;
+
+                case Key.Up:
+                    {
+                        if (curPerson == people.Length - 1)
+                            curPerson = 0;
+                        else
+                            curPerson++;
+
+                        BitmapImage face = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].face)));
+                        faceImage.Source = new TransformedBitmap(face, new ScaleTransform(0.5, 0.5));
+                        Canvas.SetBottom(faceImage, 0);
+
+                        BitmapImage white = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].white)));
+                        whiteImage.Source = new TransformedBitmap(white, new ScaleTransform(0.5, 0.5));
+                        Canvas.SetBottom(whiteImage, 0);
+
+                        BitmapImage left = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].left)));
+                        leftImgae.Source = new TransformedBitmap(left, new ScaleTransform(0.5, 0.5));
+                        BitmapImage right = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].right)));
+                        rightImage.Source = new TransformedBitmap(right, new ScaleTransform(0.5, 0.5));
+                    }
+                    break;
+
+                case Key.Down:
+                    {
+                        if (curPerson == 0)
+                            curPerson = people.Length - 1;
+                        else
+                            curPerson--;
+
+                        BitmapImage face = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].face)));
+                        faceImage.Source = new TransformedBitmap(face, new ScaleTransform(0.5, 0.5));
+                        Canvas.SetBottom(faceImage, 0);
+
+                        BitmapImage white = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].white)));
+                        whiteImage.Source = new TransformedBitmap(white, new ScaleTransform(0.5, 0.5));
+                        Canvas.SetBottom(whiteImage, 0);
+
+                        BitmapImage left = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].left)));
+                        leftImgae.Source = new TransformedBitmap(left, new ScaleTransform(0.5, 0.5));
+                        BitmapImage right = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, people[curPerson].right)));
+                        rightImage.Source = new TransformedBitmap(right, new ScaleTransform(0.5, 0.5));
                     }
                     break;
             }

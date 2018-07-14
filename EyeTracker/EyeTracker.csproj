@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="EyeTrackerHelper.cs" />
     <Compile Include="FaceTracker.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Utilities.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,16 +193,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_face.png" />
-    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_left_iris.png" />
-    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_right_iris.png" />
-    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_sclera.png" />
+    <None Include="res\characters\chris_hemsworth\chris_hemsworth_face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\chris_hemsworth\chris_hemsworth_left_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\chris_hemsworth\chris_hemsworth_right_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\chris_hemsworth\chris_hemsworth_sclera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\characters\jotaro\jotaro_kujo_face.png" />
-    <Resource Include="res\characters\jotaro\jotaro_kujo_iris_left.png" />
-    <Resource Include="res\characters\jotaro\jotaro_kujo_right_iris.png" />
-    <Resource Include="res\characters\jotaro\jotaro_kujo_sclera.png" />
+    <None Include="res\characters\jotaro\jotaro_kujo_face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\jotaro\jotaro_kujo_left_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\jotaro\jotaro_kujo_right_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\jotaro\jotaro_kujo_sclera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\characters\lisa_lisa\lisa_lisa_face.png" />
