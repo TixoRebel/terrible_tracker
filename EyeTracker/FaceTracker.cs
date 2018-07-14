@@ -19,6 +19,7 @@ namespace EyeTracker
         Task processingTask;
         bool running = true;
         readonly int webcam;
+        readonly Action<FaceTracker> onUpdate;
 
         public Point FacePoint { get; private set; } = new Point(0, 0);
         public int WebcamWidth { get; private set; } = 0;
@@ -29,6 +30,12 @@ namespace EyeTracker
 
         public FaceTracker(int webcam = -1)
         {
+            this.webcam = webcam;
+        }
+
+        public FaceTracker(Action<FaceTracker> onUpdate, int webcam = -1)
+        {
+            this.onUpdate = onUpdate;
             this.webcam = webcam;
         }
 
@@ -94,6 +101,8 @@ namespace EyeTracker
                             FacePoint = new Point(Convert.ToInt32(midX), Convert.ToInt32(eyesY));
                             FaceWidth = largestFace.Width;
                             FaceHeight = largestFace.Height;
+
+                            onUpdate?.Invoke(this);
                         }
                     }
                 }
