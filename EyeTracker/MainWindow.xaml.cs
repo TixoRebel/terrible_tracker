@@ -28,15 +28,12 @@ namespace EyeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        //BG
-        private String _BGImage = @"‪wedding.jpg";
-
+        public String BGImage { get; set; } = @"‪wedding.jpg";
         FaceTracker tracker = new FaceTracker();
 
         public MainWindow()
         {
             InitializeComponent();
-            BGImage = _BGImage;
             tracker.Start();
         }
 
@@ -46,31 +43,12 @@ namespace EyeTracker
             base.OnClosing(e);
         }
 
-        private void Confirm_Button_Click(object sender, RoutedEventArgs e)
-        {
-            lblSpectrum.Content = spectrumSlider.Value;
-        }
-
         public void MoveEyes(System.Drawing.Point xyz)
         {
             Canvas.SetLeft(imgRightEye, xyz.X);
             Canvas.SetBottom(imgRightEye, xyz.Y);
             Canvas.SetLeft(imgLeftEyse, xyz.X);
             Canvas.SetBottom(imgLeftEyse, xyz.Y);
-        }
-
-
-        // for multiple BG implementation
-        public String BGImage
-        {
-            get
-            {
-                return this._BGImage;
-            }
-            set
-            {
-                this._BGImage = value;
-            }
         }
     }
 }

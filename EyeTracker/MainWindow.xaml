@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EyeTracker"
         mc:Ignorable="d"
         Title="MainWindow" Height="800.226" Width="1152.262">
-    <Canvas Margin="0,0,5.5,7.5" HorizontalAlignment="Right" Width="1142">
+    <Canvas>
         <Canvas.Background>
             <ImageBrush ImageSource="wedding.jpg"/>
         </Canvas.Background>
@@ -17,10 +17,6 @@
             </Canvas.Background>
         </Canvas>
 
-        <Slider Name="spectrumSlider" Height="30" Width="1155" Canvas.Left="30"/>
-        <Label Content="Male&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;                      Female&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" RenderTransformOrigin="0.659,-1.514" Height="25" Canvas.Top="30"/>
-        <Button Name="btnConfirm" Click="Confirm_Button_Click" Content="Confirm" Height="54" RenderTransformOrigin="0.509,0.447" Canvas.Left="471" Canvas.Top="30" Width="95"/>
-        <Label Name="lblSpectrum" HorizontalAlignment="Left" Margin="542,89,0,0" VerticalAlignment="Top" Width="105"/>
         <Canvas Name="LeftCanvas"  Height="24" Width="48" Canvas.Left="450" Canvas.Top="318" RenderTransformOrigin="0.5,0.5">
             <Image Name="imgLeftEyse" HorizontalAlignment="Left" Height="12" VerticalAlignment="Top" Width="12" Source="ball.png" Canvas.Top="6" Canvas.Left="20"/>
         </Canvas>
