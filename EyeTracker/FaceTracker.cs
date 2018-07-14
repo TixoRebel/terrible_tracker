@@ -20,6 +20,7 @@ namespace EyeTracker
         bool running = true;
         readonly int webcam;
         readonly Action<FaceTracker> onUpdate;
+        VideoCapture cap;
 
         public Point FacePoint { get; private set; } = new Point(0, 0);
         public int WebcamWidth { get; private set; } = 0;
@@ -37,15 +38,17 @@ namespace EyeTracker
         {
             this.onUpdate = onUpdate;
             this.webcam = webcam;
+            
+            if (webcam >= 0) cap = new VideoCapture(webcam);
+            else cap = new VideoCapture();
+
+            WebcamWidth = cap.Width;
+            WebcamHeight = cap.Height;
         }
 
         public bool Start()
         {
             running = true;
-
-            VideoCapture cap;
-            if (webcam >= 0) cap = new VideoCapture(webcam);
-            else cap = new VideoCapture();
 
             if (!cap.IsOpened) return false;
 
@@ -60,11 +63,7 @@ namespace EyeTracker
         }
 
         private void CaptureWebcam(VideoCapture cap)
-        {
-
-            WebcamWidth = cap.Width;
-            WebcamHeight = cap.Height;
-            
+        {            
             CascadeClassifier cascFace = LoadCascade("haarcascade_frontalface_default.xml");
 
             while (running)

@@ -135,8 +135,85 @@
   <ItemGroup>
     <Resource Include="wedding.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="res\" />
+    <None Include="res\background\blocks_your_path.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\cashier.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\cemetery.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\coffee_shop.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\coffee_shop_bar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\dc.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\e5_bridge.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\field_of_flowers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\fireworks.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\library.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\movie_theatre.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\picnic_table.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="res\background\wedding.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\characters\anna_kendrick\anna_kendrick_face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\anna_kendrick\anna_kendrick_left_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\anna_kendrick\anna_kendrick_right_iris.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\characters\anna_kendrick\anna_kendrick_sclera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_face.png" />
+    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_left_iris.png" />
+    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_right_iris.png" />
+    <Resource Include="res\characters\chris_hemsworth\chris_hemsworth_sclera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\characters\jotaro\jotaro_kujo_face.png" />
+    <Resource Include="res\characters\jotaro\jotaro_kujo_iris_left.png" />
+    <Resource Include="res\characters\jotaro\jotaro_kujo_right_iris.png" />
+    <Resource Include="res\characters\jotaro\jotaro_kujo_sclera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\characters\lisa_lisa\lisa_lisa_face.png" />
+    <Resource Include="res\characters\lisa_lisa\lisa_lisa_left_iris.png" />
+    <Resource Include="res\characters\lisa_lisa\lisa_lisa_right_iris.png" />
+    <Resource Include="res\characters\lisa_lisa\lisa_lisa_sclera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\characters\tatsumaki\tatsumaki_face.png" />
+    <Resource Include="res\characters\tatsumaki\tatsumaki_left_iris.png" />
+    <Resource Include="res\characters\tatsumaki\tatsumaki_right_iris.png" />
+    <Resource Include="res\characters\tatsumaki\tatsumaki_sclera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets" Condition="Exists('packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets')" />

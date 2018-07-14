@@ -29,7 +29,7 @@ class EyeTrackerHelper {
         double webcamCenterX = webcamWidth/2;
         double webcamCenterY = webcamHeight/2;
         double depth = getDistanceToFace(faceWidth);
-        eye.X = Convert.ToInt32(eyeRelativeCenterX + (virtualEyeDepth * (eyeCenterRelativeWebcamX-webcamCenterX) / depth));
+        eye.X = Convert.ToInt32(eyeRelativeCenterX - (virtualEyeDepth * (eyeCenterRelativeWebcamX-webcamCenterX) / depth));
         eye.Y = Convert.ToInt32(eyeRelativeCenterY + (virtualEyeDepth * (eyeCenterRelativeWebcamY-webcamCenterY) / depth));
         return eye;
     }
@@ -42,6 +42,6 @@ class EyeTrackerHelper {
     private static int faceWidthCal = 0;
     private static int webcamWidth = 0;
     private static int webcamHeight = 0;
-    private const double distanceToFaceCal = 0.7;
+    private const double distanceToFaceCal = 0.39;
     private static double virtualEyeDepth = 0;
 }

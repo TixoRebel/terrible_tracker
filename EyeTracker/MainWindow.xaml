@@ -5,25 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EyeTracker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800.226" Width="1152.262">
-    <Canvas>
+        Title="MainWindow" Height="800" Width="1200"
+        ResizeMode="NoResize"
+        KeyDown="Window_KeyDown">
+    <Canvas Height="800" Width="1200">
         <Canvas.Background>
-            <ImageBrush ImageSource="wedding.jpg"/>
+            <ImageBrush x:Name="backgroundImage" AlignmentX="Center"  AlignmentY="Center"/>
         </Canvas.Background>
-
-        <Canvas Height="651" Canvas.Left="140" Canvas.Top="104" Width="736">
-            <Canvas.Background>
-                <ImageBrush ImageSource="jotaro_kujo_face.bmp"/>
-            </Canvas.Background>
-        </Canvas>
-
-        <Canvas Name="LeftCanvas"  Height="24" Width="48" Canvas.Left="450" Canvas.Top="318" RenderTransformOrigin="0.5,0.5">
-            <Image Name="imgLeftEyse" HorizontalAlignment="Left" Height="12" VerticalAlignment="Top" Width="12" Source="ball.png" Canvas.Top="6" Canvas.Left="20"/>
-        </Canvas>
-
-        <Canvas Name="RightCanvas" Height="24" Width="47" Canvas.Left="542" Canvas.Top="314">
-            <Image Name="imgRightEye" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="11" Source="ball.png" Canvas.Top="7" Canvas.Left="10"/>
-        </Canvas>
-        <Slider Height="0" Canvas.Left="-5" Width="5"/>
+        <Image x:Name="whiteImage" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Image x:Name="leftImgae"/>
+        <Image x:Name="rightImage"/>
+        <Image x:Name="faceImage" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Canvas>
 </Window>
