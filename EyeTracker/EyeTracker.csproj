@@ -109,7 +109,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ball.png" />
+    <Resource Include="Eyes.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="haarcascades\haarcascade_eye.xml" />
     <EmbeddedResource Include="haarcascades\haarcascade_eye_tree_eyeglasses.xml" />
@@ -128,6 +131,9 @@
     <EmbeddedResource Include="haarcascades\haarcascade_russian_plate_number.xml" />
     <EmbeddedResource Include="haarcascades\haarcascade_smile.xml" />
     <EmbeddedResource Include="haarcascades\haarcascade_upperbody.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wedding.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets" Condition="Exists('packages\EMGU.CV.3.4.1.2976\build\EMGU.CV.targets')" />
