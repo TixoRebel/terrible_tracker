@@ -61,7 +61,6 @@ namespace EyeTracker
                             float midY = face.Top + face.Height / 2.0f;
                             float eyesY = midY - (face.Height * 0.1f);
                             imageFrame.Draw(new CircleF(new PointF(midX, eyesY), 3), new Bgr(System.Drawing.Color.Aqua), 3);
-                            imageFrame.Draw($"({midX}, {eyesY})", new System.Drawing.Point(Convert.ToInt32(midX), Convert.ToInt32(eyesY)), FontFace.HersheyPlain, 2, new Bgr(System.Drawing.Color.Black), 2);
                         }
                     }
 
