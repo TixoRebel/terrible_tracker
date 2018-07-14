@@ -18,8 +18,14 @@ namespace EyeTracker
     {
         Task processingTask;
         bool running = true;
-        public Point FacePoint { get; private set; } = new Point(0, 0);
         readonly int webcam;
+
+        public Point FacePoint { get; private set; } = new Point(0, 0);
+        public int WebcamWidth { get; private set; } = 0;
+        public int WebcamHeight { get; private set; } = 0;
+        public int FaceWidth { get; private set; } = 0;
+        public int FaceHeight { get; private set; } = 0;
+        public bool Face { get; private set; } = false;
 
         public FaceTracker(int webcam = -1)
         {
@@ -44,6 +50,9 @@ namespace EyeTracker
             VideoCapture cap;
             if (webcam >= 0) cap = new VideoCapture(webcam);
             else cap = new VideoCapture();
+
+            WebcamWidth = cap.Width;
+            WebcamHeight = cap.Height;
 
             CascadeClassifier cascEye = LoadCascade("haarcascade_eye_tree_eyeglasses.xml");
             CascadeClassifier cascFace = LoadCascade("haarcascade_frontalface_default.xml");
@@ -74,11 +83,14 @@ namespace EyeTracker
 
                         if (isFace)
                         {
+                            Face = true;
                             float midX = largestFace.Left + largestFace.Width / 2.0f;
                             float midY = largestFace.Top + largestFace.Height / 2.0f;
                             float eyesY = midY - (largestFace.Height * 0.1f);
 
                             FacePoint = new Point(Convert.ToInt32(midX), Convert.ToInt32(eyesY));
+                            FaceWidth = largestFace.Width;
+                            FaceHeight = largestFace.Height;
                         }
                     }
                 }
