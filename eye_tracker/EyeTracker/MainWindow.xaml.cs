@@ -30,6 +30,7 @@ namespace EyeTracker
     {
         Task processingTask;
         bool running = true;
+        System.Drawing.Point facePoint = new System.Drawing.Point(0, 0);
 
         public MainWindow()
         {
@@ -54,17 +55,30 @@ namespace EyeTracker
                         var grayframe = imageFrame.Convert<Gray, byte>();
                         var faces = cascFace.DetectMultiScale(grayframe, 1.1, 10, System.Drawing.Size.Empty);
 
+                        System.Drawing.Rectangle largestFace = System.Drawing.Rectangle.Empty;
+                        float largestArea = 0;
+                        bool isFace = false;
+
                         foreach (var face in faces)
                         {
-                            imageFrame.Draw(face, new Bgr(System.Drawing.Color.Yellow), 3);
-                            float midX = face.Left + face.Width / 2.0f;
-                            float midY = face.Top + face.Height / 2.0f;
-                            float eyesY = midY - (face.Height * 0.1f);
-                            imageFrame.Draw(new CircleF(new PointF(midX, eyesY), 3), new Bgr(System.Drawing.Color.Aqua), 3);
+                            float area = face.Width * face.Height;
+                            if (area > largestArea)
+                            {
+                                largestArea = area;
+                                largestFace = face;
+                                isFace = true;
+                            }
+                        }
+
+                        if (isFace)
+                        {
+                            float midX = largestFace.Left + largestFace.Width / 2.0f;
+                            float midY = largestFace.Top + largestFace.Height / 2.0f;
+                            float eyesY = midY - (largestFace.Height * 0.1f);
+
+                            facePoint = new System.Drawing.Point(Convert.ToInt32(midX), Convert.ToInt32(eyesY));
                         }
                     }
-
-                    RunOnUIThread(() => { wpfImage.Source = ToBitmapSource(imageFrame); });
                 }
 
                 Task.Delay(100);
