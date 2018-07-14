@@ -12,6 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
+using Emgu.Util;
+using static EyeTracker.Utilities;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace EyeTracker
 {
@@ -20,9 +28,18 @@ namespace EyeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        FaceTracker tracker = new FaceTracker();
+
         public MainWindow()
         {
             InitializeComponent();
+            tracker.Start();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            tracker.Stop();
+            base.OnClosing(e);
         }
     }
 }
