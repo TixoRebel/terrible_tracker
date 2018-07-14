@@ -40,7 +40,7 @@ namespace EyeTracker
             if (webcam >= 0) cap = new VideoCapture(webcam);
             else cap = new VideoCapture();
 
-            if (cap == null) return false;
+            if (!cap.IsOpened) return false;
 
             processingTask = new Task(() => { CaptureWebcam(cap); });
             processingTask.Start();
