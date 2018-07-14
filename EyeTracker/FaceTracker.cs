@@ -53,8 +53,7 @@ namespace EyeTracker
 
             WebcamWidth = cap.Width;
             WebcamHeight = cap.Height;
-
-            CascadeClassifier cascEye = LoadCascade("haarcascade_eye_tree_eyeglasses.xml");
+            
             CascadeClassifier cascFace = LoadCascade("haarcascade_frontalface_default.xml");
 
             while (running)
