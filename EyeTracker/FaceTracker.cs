@@ -32,12 +32,19 @@ namespace EyeTracker
             this.webcam = webcam;
         }
 
-        public void Start()
+        public bool Start()
         {
             running = true;
 
-            processingTask = new Task(CaptureWebcam);
+            VideoCapture cap;
+            if (webcam >= 0) cap = new VideoCapture(webcam);
+            else cap = new VideoCapture();
+
+            if (cap == null) return false;
+
+            processingTask = new Task(() => { CaptureWebcam(cap); });
             processingTask.Start();
+            return true;
         }
 
         public void Stop()
@@ -45,11 +52,8 @@ namespace EyeTracker
             running = false;
         }
 
-        private void CaptureWebcam()
+        private void CaptureWebcam(VideoCapture cap)
         {
-            VideoCapture cap;
-            if (webcam >= 0) cap = new VideoCapture(webcam);
-            else cap = new VideoCapture();
 
             WebcamWidth = cap.Width;
             WebcamHeight = cap.Height;
